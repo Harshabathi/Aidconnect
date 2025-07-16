@@ -1,0 +1,76 @@
+<%- layout("./layouts/boilerplate") %>
+
+    <h2>Browse Available Aid</h2>
+
+    <div class="container mt-3">
+
+        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% for (let aid of aids) { %>
+                <div class="col">
+                    <div class="card" style="width: 26rem; height: 16rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <b>
+                                    <%=aid.title%>
+                                </b>
+                            </h5>
+                            <div class="subtitle d-flex g-2">
+                                <% const p=aid.priority.trim().toLowerCase(); %>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary mt-2">
+                                        <% if (p==='high priority' ) { %>
+                                            <span class="badge bg-danger text-white rounded-pill">
+                                                <%= aid.priority %>
+                                            </span>
+                                            <% } else if (p==='medium priority' ) { %>
+                                                <span class="badge bg-dark text-dark rounded-pill text-white">
+                                                    <%= aid.priority %>
+                                                </span>
+                                                <% } else { %>
+                                                    <span class="badge text-bg-secondary rounded-pill">
+                                                        <%= aid.priority%>
+                                                    </span>
+                                                    <% } %>
+                                    </h6>
+
+                            </div>
+
+                            <p class="card-text text-muted">
+                                <%=aid.description%>
+                            </p>
+
+                            <p class="card-text">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <%=aid.pickuplocation%>
+                            </p>
+                            <div class="bottom d-flex justify-content-between">
+                                <p class="card-text ">
+                                    <%= aid.donor ? aid.donor.username : "Unknown Donor" %>
+                                </p>
+                                <div>
+                                    <i class="fa-regular fa-clock"></i>&nbsp;<%=aid.postedAgo%>
+                                </div>
+                            </div>
+
+                            <div class="bottom d-flex align-items-center">
+                                <p class="card-text text-success fw-bold">
+                                    <%= aid.availability %> Available
+                                </p>
+                                <% if (currentUser && aid.donor) { %>
+                                    <a href="/users/<%= currentUser._id %>/messages/<%= aid.donor._id %>" class="btn btn-dark ms-auto mb-2">
+                                        <i class="fa-regular fa-message"></i>&nbsp;&nbsp; Contact Donor
+                                    </a>
+                                <% } else { %>
+                                    <a href="/users/login" class="btn btn-outline-primary ms-auto mb-2">
+                                        <i class="fa-regular fa-message"></i>&nbsp;&nbsp; Login to Contact Donor
+                                    </a>
+                                <% } %>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+   

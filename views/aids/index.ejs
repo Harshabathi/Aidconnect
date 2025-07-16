@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AidConnect - Connecting Hearts in Times of Crisis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .navbar{
+            height:60px;
+        }
+        .hero {
+            background: #f5faff;
+            padding: 80px 0 60px 0;
+            text-align: center;
+        }
+
+        .stat {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            background: #2563eb;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer {
+            background: #222;
+            color: #ccc;
+            padding: 30px 0 10px 0;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+        <div class="container-fluid">
+          <!-- Logo (left) -->
+          <a class="navbar-brand" href="/">
+            <i class="fa-regular fa-heart" style="color: red; font-size: larger;"></i>
+            <b>AidConnect</b>
+          </a>
+      
+          <!-- Toggler for small screens -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+            <!-- Left spacer (empty) to balance layout -->
+            <div class="d-none d-lg-block" style="width: 150px;"></div>
+      
+            <!-- Centered nav links -->
+            <div class="navbar-nav mx-auto text-center">
+              <a class="nav-link active" aria-current="page" href="/aids">Browse Aid</a>
+              <a class="nav-link" href="/aids/new">Donate</a>
+              <a class="nav-link" href="/about">About</a>
+            </div>
+      
+            <!-- Sign-in / Auth buttons (right) -->
+            <div class="d-flex flex-column flex-lg-row align-items-center ms-lg-auto mt-3 mt-lg-0">
+              <% if (currentUser) { %>
+                <a href="/users/logout" class="btn btn-outline-dark me-lg-2 mb-2 mb-lg-0">Logout</a>
+              <% } else { %>
+                <a href="/users/login" class="btn btn-outline-dark me-lg-2 mb-2 mb-lg-0">Sign In</a>
+                <a href="/users/register" class="btn btn-dark">Get Started</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Connecting Hearts in Times of <br>Crisis</h1>
+            <p class="lead mt-3 mb-4">
+                A platform where generous donors can offer essential aid – food, shelter, medicine, and more <br>– directly
+                to those who need it most during difficult times.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="/aids" class="btn btn-dark btn-lg"><i class="fa-solid fa-users"></i>&nbsp; Find Aid</a>
+                <a href="/aids/new" class="btn btn-outline-secondary btn-lg"><i class="fa-regular fa-heart"></i>&nbsp; Offer Help</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-5">
+        <div class="container" id="about">
+            <h2 class="text-center fw-bold mb-5">How AidConnect Works</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center shadow-sm">
+                    <div class="mb-3"><i class="fa-solid fa-heart" style="color: red; font-size: 2.5rem;"></i></div>
+                    <h5>Donors Post Aid</h5>
+                    <p>Generous individuals and organizations post available resources including food, shelter,
+                        clothing, medicine, and other essential items.</p>
+                </div>
+                <div class="col-md-4 text-center shadow-sm">
+                    <div class="mb-3"><i class="fa-solid fa-user" style="color: rgb(49, 145, 205); font-size: 2.5rem;"></i></div>
+                    <h5>People Browse & Search</h5>
+                    <p>Those in need can easily browse available aid by category, location, and urgency to find exactly
+                        what they require.</p>
+                </div>
+                <div class="col-md-4 text-center shadow-sm ">
+                    <div class="mb-3"><span class="fs-1 text-success">&#128172;</span></div>
+                    <h5>Direct Communication</h5>
+                    <p>Recipients can message donors directly to coordinate pickup, delivery, and ensure aid reaches
+                        those who need it most.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stat text-primary">2,847</div>
+                    <div>Aid Items Posted</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stat text-success">1,293</div>
+                    <div>People Helped</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stat text-danger">456</div>
+                    <div>Active Donors</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="stat text-purple" style="color: #8b5cf6;">89</div>
+                    <div>Cities Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 cta-section">
+        <div class="container">
+            <h2 class="fw-bold mb-5">Ready to Make a Difference?</h2>
+            <p class="mb-4">Join our community of helpers and those seeking assistance. Together, we can overcome any
+                crisis.</p>
+            <a href="/users/register" class="btn btn-light btn-lg me-2">Join as Donor</a>
+            <a href="/users/register" class="btn btn-outline-light btn-lg">Seek Assistance</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer ">
+        <div class="py-5 container">
+            <div class="row">
+                <div class="col-md-3 mb-3 ">
+                    <span class="fw-bold"><span class="text-danger">&#10084;</span> AidConnect</span>
+                    <div>Connecting hearts and resources in times of crisis.</div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <span class="fw-bold">Platform</span><br>
+                    <a href="/aids">Browse Aid</a><br>
+                    <a href="/aids/new">Donate</a><br>
+                    
+                </div>
+                <div class="col-md-3 mb-3">
+                    <span class="fw-bold">Support</span><br>
+                    <a href="#">Help Center</a><br>
+                    <a href="#">Safety Guidelines</a><br>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <span class="fw-bold">Emergency</span><br>
+                    Crisis Hotline: 1-800-CRISIS<br>
+                    Medical Emergency: 911<br>
+                    Platform Support: 24/7
+                </div>
+            </div>
+            <div class="text-center mt-4 small">&copy; 2024 AidConnect. Built with hope for humanity.</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div class="container-fluid">
+    <!-- Logo (Left) -->
+    <a class="navbar-brand" href="/aids">
+      <i class="fa-regular fa-heart" style="color: red; font-size: larger;"></i>
+      <b>AidConnect</b>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="d-flex flex-column flex-lg-row align-items-center w-100">
+        
+        <!-- Centered Nav Links -->
+        <div class="navbar-nav mx-lg-auto text-center my-2 my-lg-0">
+          <a class="nav-link active" href="/users/<%= currentUser._id %>/dashboard">Dashboard</a>
+          <a class="nav-link" href="/aids/new">Add Donation</a>
+          <a class="nav-link" href="/users/<%= currentUser._id %>/messages">Messages</a>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="sign-options d-flex flex-column flex-lg-row align-items-center ms-lg-auto">
+          <% if (currentUser) { %>
+            <a href="/users/logout" class="btn btn-outline-dark mb-2 mb-lg-0">Logout</a>
+          <% } else { %>
+            <a href="/users/login" class="btn btn-outline-dark me-lg-2 mb-2 mb-lg-0">Sign In</a>
+            <a href="/users/register" class="btn btn-dark">Get Started</a>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>

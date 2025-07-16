@@ -1,0 +1,112 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+  <div class="container-fluid chat-container">
+    <div class="row h-100">
+      
+      <div class="col-12 col-md-4 col-lg-3 chat-sidebar p-0 border-end">
+        <div class="sidebar-header p-3 border-bottom">
+          <input type="text" class="form-control" placeholder="Search conversations...">
+        </div>
+        <ul class="list-group list-group-flush chat-list">
+          <% conversations.forEach(function(conv, idx) { %>
+            <a href="/users/<%= currentUser._id %>/messages/<%= conv.userId %>"
+              style="text-decoration:none; color:inherit;">
+              <li class="list-group-item chat-list-item <%= idx === 0 ? 'active' : '' %>" data-userid="<%= conv.userId %>">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold">
+                      <%= conv.name %>
+                    </div>
+                    <div class="text-muted small">Re: <%= conv.subject %>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <div class="small text-muted">
+                      <%= conv.time %>
+                    </div>
+                    <% if (conv.unread> 0) { %>
+                      <span class="badge bg-danger rounded-pill">
+                        <%= conv.unread %>
+                      </span>
+                      <% } %>
+                  </div>
+                </div>
+                <div>
+                  <span class="badge bg-dark mt-1">
+                    <%= conv.status %>
+                  </span>
+                </div>
+              </li>
+            </a>
+            <% }) %>
+        </ul>
+      </div>
+
+      
+      <div class="col-12 col-md-8 col-lg-9 chat-main d-flex flex-column p-0">
+        <% if (!conversations.length) { %>
+          <div class="d-flex flex-grow-1 align-items-center justify-content-center">
+            <div class="text-muted">No conversations yet.</div>
+          </div>
+          <% } else { %>
+            <div class="chat-header p-3 border-bottom d-flex align-items-center justify-content-between">
+              <div>
+                <div class="fw-bold fs-5"><%= conversations[0].name %></div>
+                <div class="text-muted small">Regarding: <%= conversations[0].subject %></div>
+              </div>
+              <div>
+                <button class="btn btn-light me-2"><i class="bi bi-telephone"></i></button>
+                <button class="btn btn-light me-2"><i class="bi bi-camera-video"></i></button>
+                <button class="btn btn-light"><i class="bi bi-three-dots"></i></button>
+              </div>
+            </div>
+            <div class="chat-messages flex-grow-1 p-4" id="chat-messages" style="overflow-y:auto;">
+              <% if (chat && chat.length) { %>
+                <% chat.forEach(function(msg) { %>
+                  <div class="mb-3 <%= msg.from.equals(currentUser._id) ? 'text-end' : 'text-start' %>">
+                    <div class="d-inline-block p-2 rounded <%= msg.from.equals(currentUser._id) ? 'bg-primary text-white' : 'bg-light' %>">
+                      <%= msg.message %>
+                    </div>
+                    <div class="small text-muted">
+                      <%= msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>
+                    </div>
+                  </div>
+                <% }) %>
+              <% } else { %>
+                <div class="text-muted">No messages yet.</div>
+              <% } %>
+            </div>
+            <% } %>
+
+              <div class="chat-input border-top p-3">
+                <form id="chat-form" class="d-flex">
+                  <input type="text" class="form-control me-2" id="message-input" placeholder="Type your message..."
+                    autocomplete="off">
+                  <button class="btn btn-dark" type="submit"><i class="bi bi-send"></i></button>
+                </form>
+                
+                <div class="small text-muted mt-2">Please be respectful and provide accurate information about aid
+                  availability.</div>
+              </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Get the input box
+  const messageInput = document.getElementById('message-input');
+  // Find the active conversation
+  const activeChatItem = document.querySelector('.chat-list-item.active');
+  // Get the current user ID from the template
+  const currentUserId = "<%= currentUser._id %>";
+
+  if (messageInput && activeChatItem) {
+    messageInput.addEventListener('focus', function() {
+      // Get the userId of the conversation partner
+      const otherUserId = activeChatItem.getAttribute('data-userid');
+      if (otherUserId) {
+        // Redirect to the chat page for this conversation
+        window.location.href = `/users/${currentUserId}/messages/${otherUserId}`;
+      }
+    });
+  }
+</script>

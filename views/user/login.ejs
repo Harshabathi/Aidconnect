@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AidConnect - Join Our Community</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f3f7fc;
+        }
+
+        .form-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+
+        <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger"><%= error %></div>
+          <% } %>
+          <% if (success && success.length > 0) { %>
+            <div class="alert alert-success"><%= success %></div>
+          <% } %>   
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-1">Join Our Community</h2>
+                    <p class="text-muted fs-5">Connect with others to give and receive aid during difficult times</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-5 form-section me-md-3 mb-3 mb-md-0">
+
+
+                        <h3>Sign In</h2>
+                            <p class="text-muted">Enter you credentials to access your account</p>
+
+                            <form action="/users/login" method="post" class="needs-validation" novalidate>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" placeholder="johndoe"
+                                        name="username" required>
+                                    <div class="invalid-feedback">Enter valid Username</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" required>
+                                    <div class="invalid-feedback">Enter strong password</div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-dark btn-primary w-100">&nbsp;&nbsp;Sign
+                                    in</button>
+                            </form>
+                            <div class="text-center mt-3">
+                                <small class="text-muted">Don't have an account? <a href="/users/register">Sign up</a></small>
+                            </div>
+                    </div>
+                </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        (() => {
+            'use strict';
+
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+
+</body>
+
+</html>

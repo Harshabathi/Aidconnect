@@ -1,0 +1,89 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+
+    
+
+    <div class="container vh-150 d-flex align-items-center justify-content-center">
+        <div class="row w-150 justify-content-center align-items-center">
+
+
+            <div class="col-md-9 bg-white p-4 rounded shadow">
+                <h2 class="text-center mb-3">Edit Your Aid Offer</h2>
+                <p class="text-center mb-4">
+                    Update the details about what you're offering to help those in need find exactly what they're looking
+                    for.
+                </p>
+                <form action="/aids/<%= aid._id %>?_method=PUT" method="POST">
+                    <div class="mb-3">
+                        <div class="col mb-3">
+                            <label for="title" class="form-label">Aid Title</label>
+                            <input type="text" class="form-control" id="title" name="aid[title]" required
+                                placeholder="eg.. Emergency food packages" value="<%= aid.title %>">
+                        </div>
+                        <div class="col mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" aria-label="Default select example" id="category"
+                                name="aid[category]">
+                                <option value="" disabled hidden>Select a category</option>
+                                <option value="Food" <%= aid.category === 'Food' ? 'selected' : '' %>>Food</option>
+                                <option value="Clothing" <%= aid.category === 'Clothing' ? 'selected' : '' %>>Clothing</option>
+                                <option value="Medical" <%= aid.category === 'Medical' ? 'selected' : '' %>>Medical</option>
+                                <option value="Baby Care" <%= aid.category === 'Baby Care' ? 'selected' : '' %>>Baby Care</option>
+                                <option value="Education" <%= aid.category === 'Education' ? 'selected' : '' %>>Education</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="aid[description]" rows="3"
+                            placeholder="Describe what you're offering"><%= aid.description %></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="col mb-3">
+                            <label for="quantity" class="form-label">Quantity Available</label>
+                            <input type="number" class="form-control" id="quantity" name="aid[availability]" required
+                                placeholder="e.g:10" value="<%= aid.availability %>">
+                        </div>
+                        <div class="col mb-3">
+                            <label for="priority" class="form-label">Urgency Level</label>
+                            <select class="form-select" aria-label="Default select example" id="priority"
+                                name="aid[priority]">
+                                <option value="" disabled hidden>Select urgency</option>
+                                <option value="High priority" <%= aid.priority === 'High priority' ? 'selected' : '' %>>Low-can wait</option>
+                                <option value="Medium priority" <%= aid.priority === 'Medium priority' ? 'selected' : '' %>>Medium-Needed soon</option>
+                                <option value="Low priority" <%= aid.priority === 'Low priority' ? 'selected' : '' %>>High-urgent need</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="col">
+                            <label for="location" class="form-label">Pickup Location</label>
+                            <input type="text" class="form-control"
+                                placeholder="e.g., Downtown Community Center, 123 Main St" id="location"
+                                name="aid[pickuplocation]" required value="<%= aid.pickuplocation %>">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" name="aid[status]">
+                            <option value="available" <%= aid.status === 'available' ? 'selected' : '' %>>Available</option>
+                            <option value="claimed" <%= aid.status === 'claimed' ? 'selected' : '' %>>Claimed</option>
+                            <option value="expired" <%= aid.status === 'expired' ? 'selected' : '' %>>Expired</option>
+                            <option value="in transit" <%= aid.status === 'in transit' ? 'selected' : '' %>>In Transit</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-dark" type="submit">Update</button>
+
+                </form>
+            </div>
+
+            
+           
+
+        </div>
+    </div>

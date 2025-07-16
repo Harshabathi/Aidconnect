@@ -1,0 +1,28 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow rounded">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-3"><%= aid.title %></h2>
+                    <h5 class="card-subtitle mb-2 text-muted text-center">Category: <%= aid.category %></h5>
+                    <div class="mb-3 text-center">
+                        <span class="badge bg-dark"><%= aid.status %></span>
+                        <span class="badge bg-secondary ms-2">Urgency: <%= aid.priority %></span>
+                    </div>
+                    <p class="card-text mb-3"><strong>Description:</strong> <%= aid.description %></p>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item"><strong>Quantity Available:</strong> <%= aid.availability %></li>
+                        <li class="list-group-item"><strong>Pickup Location:</strong> <%= aid.pickuplocation %></li>
+                        <li class="list-group-item"><strong>Posted:</strong> <%= dayjs(aid.createdAt).fromNow() %></li>
+                    </ul>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/aids" class="btn btn-outline-secondary">Back to All Aids</a>
+                        <a href="/user/dashboard" class="btn btn-dark">Go to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

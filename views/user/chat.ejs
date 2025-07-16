@@ -1,0 +1,82 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-12">
+      <div class="card shadow rounded">
+        <div class="card-header d-flex align-items-center">
+          <div>
+            <h5 class="mb-0"><%= otherUser.username %></h5>
+            <small class="text-muted">Chat with <%= otherUser.username %></small>
+          </div>
+        </div>
+        <div class="card-body" id="chat-messages" style="height: 400px; overflow-y: auto;">
+          <% chat.forEach(function(msg) { %>
+            <div class="mb-3 <%= msg.from.equals(currentUser._id) ? 'text-end' : 'text-start' %>">
+              <div class="d-inline-block p-2 rounded <%= msg.from.equals(currentUser._id) ? 'bg-primary text-white' : 'bg-light' %>">
+                <%= msg.message %>
+              </div>
+              <div class="small text-muted">
+                <%= msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        <div class="card-footer">
+          <form id="chat-form" class="d-flex">
+            <input type="text" class="form-control me-2" id="message-input" placeholder="Type your message..." autocomplete="off">
+            <button class="btn btn-dark" type="submit"><i class="bi bi-send"></i> Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const currentUserId = "<%= currentUser._id %>";
+  const selectedRecipientId = "<%= otherUser._id %>";
+  
+  console.log(currentUserId);
+  console.log(selectedRecipientId);
+  // Join your own room
+  socket.emit('join', currentUserId);
+
+  socket.on('connect', () => {
+    console.log('Socket.IO connected:', socket.id);
+  });
+
+  // Listen for incoming messages
+  socket.on('receive_message', (data) => {
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+    const messageDiv = document.createElement('div');
+    messageDiv.className = (data.from === currentUserId) ? 'text-end mb-3' : 'text-start mb-3';
+    messageDiv.innerHTML = `
+      <div class="d-inline-block p-2 rounded ${data.from === currentUserId ? 'bg-primary text-white' : 'bg-light'}">
+        ${data.message}
+      </div>
+      <div class="small text-muted">${data.time}</div>
+    `;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  });
+
+  // Send message on form submit
+  document.getElementById('chat-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = document.getElementById('message-input');
+    const message = input.value.trim();
+    if (message) {
+      const data = {
+        message,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        from: currentUserId,
+        to: selectedRecipientId
+      };
+      socket.emit('send_message', data);
+      input.value = '';
+    }
+  });
+</script>

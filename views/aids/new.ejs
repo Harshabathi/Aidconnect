@@ -1,0 +1,126 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+
+    <div class="container mb-5">
+        <h2 class="text-center">Offer Aid to Those in Need</h2>
+        <p class="text-center">Share what you can offer – every contribution makes a difference.</p>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-start mb-5">
+        <div class="row w-100 g-4 flex-wrap">
+            <!-- Form Column -->
+            <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+                <div class="bg-white p-4 rounded shadow h-100">
+                    <h2 class="text-center mb-3">Post Your Aid Offer</h2>
+                    <p class="text-center mb-4">
+                        Provide details about what you're offering to help those in need find exactly what they're looking
+                        for.
+                    </p>
+                    <form action="/aids" method="post">
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Aid Title</label>
+                                <input type="text" class="form-control" id="title" name="aid[title]" required
+                                    placeholder="eg.. Emergency food packages">
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" aria-label="Default select example" id="category"
+                                    name="aid[category]">
+                                    <option value="" disabled selected hidden>Select a category</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Baby Care">Baby Care</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="aid[description]" rows="3"
+                                placeholder="Describe what you're offering"></textarea>
+                        </div>
+
+                        <div class="mb-3 row g-2">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                <label for="quantity" class="form-label">Quantity Available</label>
+                                <input type="number" class="form-control" id="quantity" name="aid[availability]" required
+                                    placeholder="e.g:10">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="priority" class="form-label">Urgency Level</label>
+                                <select class="form-select" aria-label="Default select example" id="priority"
+                                    name="aid[priority]">
+                                    <option selected hidden>Select urgency</option>
+                                    <option value="Low priority">Low - can wait</option>
+                                    <option value="Medium priority">Medium - Needed soon</option>
+                                    <option value="High priority">High - urgent need</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Pickup Location</label>
+                            <input type="text" class="form-control"
+                                placeholder="e.g., Downtown Community Center, 123 Main St" id="location"
+                                name="aid[pickuplocation]" required>
+                        </div>
+
+                        <button class="btn btn-dark w-100" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar Column -->
+            <div class="col-12 col-lg-4 d-flex flex-column gap-3">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <h4>Posting Guidelines</h4>
+                    <ul>
+                        <li>
+                            <p>Be specific about what you're offering and any conditions</p>
+                        </li>
+                        <li>
+                            <p>Include clear pickup or delivery instructions</p>
+                        </li>
+                        <li>
+                            <p>Respond promptly to messages from those in need</p>
+                        </li>
+                        <li>
+                            <p>Update availability when items are no longer available</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <h5>Recent Available Posts</h5>
+                    <% if (recentAids && recentAids.length > 0) { %>
+                        <ul class="list-group">
+                            <% recentAids.forEach(function(a) { %>
+                                <li class="list-group-item">
+                                    <strong>
+                                        <%= a.title %>
+                                    </strong><br>
+                                    <small>Posted: <%= dayjs(a.createdAt).fromNow() %></small>
+                                    <br>
+                                    <span class="badge bg-dark">
+                                        <%= a.status %>
+                                    </span>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } else { %>
+                            <p>No recent available posts.</p>
+                            <% } %>
+                </div>
+
+                <div class="p-3 rounded bg-white shadow-sm">
+                    <h5>Need help ?</h5>
+                     <p class="mt-3">If you need assistance posting your aid offer or have questions 
+                        about the process, we're here to help.</p>
+                     <button class="btn btn-outline-secondary shadow-sm w-100">Contact Support</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
