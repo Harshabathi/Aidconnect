@@ -9,6 +9,8 @@
 
 ## 🚀 Features
 
+- 🗺️ **Location-Based Search** – Temporary integration with **Mapbox Geocoding API** for address/location lookup
+
 - 🆘 **Disaster Relief Platform** – Share and request aid in critical times.
 - 👥 **Role-based Access** – Donors can post aids; recipients can view and initiate contact.
 - 💬 **Real-Time Chat** – Built using **Socket.IO**, allowing instant conversations between users.
@@ -27,27 +29,14 @@
 ## 📁 Project Structure
 
 \`\`\`
-AidConnect/
-├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── sockets/
-│   └── server.js
-├── frontend/
-│   ├── public/
-│   ├── views/
-│   │   ├── home.ejs
-│   │   ├── chat.ejs
-│   │   └── ...
-│   └── styles/
-├── .env
-└── README.md
+
 \`\`\`
 
 ---
 
 ## ⚙️ Tech Stack
+
+| **Mapbox Geocoding API** | Temporary geolocation feature to convert addresses into coordinates |
 
 | Technology    | Purpose                          |
 |---------------|----------------------------------|
@@ -70,10 +59,10 @@ AidConnect/
 - `.env` file with:
 
 \`\`\`env
-MONGO_URI=your_mongodb_connection
-SESSION_SECRET=your_session_secret
-PORT=5000
-CLIENT_URL=http://localhost:5000
+- MONGO_URI=your_mongodb_connection
+- SESSION_SECRET=your_session_secret
+- PORT=8000
+- CLIENT_URL=http://localhost:8000
 \`\`\`
 
 ---
@@ -96,14 +85,14 @@ CLIENT_URL=http://localhost:5000
    npm start
    \`\`\`
 
-4. Visit \`http://localhost:5000\` in your browser.
+4. Visit \`http://localhost:8000\` in your browser.
 
 ---
 
 ## 💬 Chat Feature
 
 - Socket.IO enables live chat between donor and recipient.
-- Messages are exchanged in real time (stored optionally if persistent chat is implemented).
+- Messages are exchanged in real time (looking forward to store unread messages).
 - Cursor.dev assisted in integrating this feature efficiently.
 
 ---
@@ -111,21 +100,9 @@ CLIENT_URL=http://localhost:5000
 ## 🛠️ Planned Improvements
 
 - [ ] Convert to a **Progressive Web App (PWA)**  
-- [ ] Add geolocation to match users by region  
 - [ ] Store chat history  
 - [ ] Implement notifications  
 - [ ] Enable NGO registration and verification  
 
 ---
-
-## 🤝 Acknowledgements
-
-- Special thanks to [Cursor](https://www.cursor.sh/) for assisting in Socket.IO integration and development speed.
-- Built with ❤️ for communities in need.
-
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
 
