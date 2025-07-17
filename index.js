@@ -97,21 +97,7 @@ app.get("/",(req,res)=>{
 })
 
 
-const url = 'https://aidconnect-glcj.onrender.com/';
-const interval = 30000;
 
-function reloadwebsite(){
-  axios
-      .get(url)
-      .then((res)=>{
-         console.log("website reloaded");
-      })
-      .catch((err)=>{
-        console.log(`Error : ${err.message}`);
-      })
-}
-
-setInterval(reloadwebsite,interval);
 
 app.use((err, req, res, next) => {
   let { status = 500, message = 'something went wrong' } = err;
