@@ -26,10 +26,19 @@
 
 ---
 
-
 ## ⚙️ Tech Stack
 
+| Technology    | Purpose                          |
+|---------------|----------------------------------|
+| **MongoDB Atlas** | Cloud-hosted MongoDB database         |
+| **Express.js**| Web framework for Node.js        |
+| **Node.js**   | Backend JavaScript runtime       |
+| **Bootstrap** | Responsive frontend UI framework |
+| **Socket.IO** | Real-time bidirectional communication |
+| **Passport.js** | Authentication and session management |
+| **EJS / HTML**| Server-rendered pages            |
 | **Mapbox Geocoding API** | Temporary geolocation feature to convert addresses into coordinates |
+| **Render** | Hosting platform for backend/frontend deployment |
 
 | Technology    | Purpose                          |
 |---------------|----------------------------------|
@@ -51,7 +60,7 @@
 - MongoDB
 - `.env` file with:
 
-  ENV
+  env
 - MONGO_URI=your_mongodb_connection
 - SESSION_SECRET=your_session_secret
 - PORT=8000
@@ -85,7 +94,7 @@
 ## 💬 Chat Feature
 
 - Socket.IO enables live chat between donor and recipient.
-- Messages are exchanged in real time (looking forward to store unread messages).
+- Messages are exchanged in real time (stored optionally if persistent chat is implemented).
 - Cursor.dev assisted in integrating this feature efficiently.
 
 ---
@@ -98,4 +107,9 @@
 - [ ] Enable NGO registration and verification  
 
 ---
+
+
+## 🌍 Live Website
+
+Access the deployed project here: [AidConnect on Render]((https://aidconnect-glcj.onrender.com/))
 
