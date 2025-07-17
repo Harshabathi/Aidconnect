@@ -26,13 +26,6 @@
 
 ---
 
-## 📁 Project Structure
-
-\`\`\`
-
-\`\`\`
-
----
 
 ## ⚙️ Tech Stack
 
@@ -58,12 +51,12 @@
 - MongoDB
 - `.env` file with:
 
-\`\`\`env
+  ENV
 - MONGO_URI=your_mongodb_connection
 - SESSION_SECRET=your_session_secret
 - PORT=8000
 - CLIENT_URL=http://localhost:8000
-\`\`\`
+
 
 ---
 
