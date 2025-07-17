@@ -39,17 +39,7 @@
 | **EJS / HTML**| Server-rendered pages            |
 | **Mapbox Geocoding API** | Temporary geolocation feature to convert addresses into coordinates |
 | **Render** | Hosting platform for backend/frontend deployment |
-
-| Technology    | Purpose                          |
-|---------------|----------------------------------|
-| **MongoDB**   | NoSQL database for storing users, messages, and aid data |
-| **Express.js**| Web framework for Node.js        |
-| **Node.js**   | Backend JavaScript runtime       |
-| **Bootstrap** | Responsive frontend UI framework |
-| **Socket.IO** | Real-time bidirectional communication |
-| **Passport.js** | Authentication and session management |
-| **EJS / HTML**| Server-rendered pages            |
-
+ 
 ---
 
 ## 🧪 Getting Started
