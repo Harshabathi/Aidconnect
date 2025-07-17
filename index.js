@@ -74,7 +74,10 @@ app.use((req, res, next) => {
 
 async function main() {
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     console.log("✅ MongoDB connected successfully");
   } catch (err) {
     console.log("❌ MongoDB connection failed:", err);

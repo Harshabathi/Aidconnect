@@ -42,6 +42,24 @@
         .icon-aid {
             color: #22c55e;
         }
+
+        @media (max-width: 576px) {
+            .form-section {
+                padding: 1rem !important;
+                margin: 1.5rem 0 !important;
+                border-radius: 10px;
+                width: 100%;
+                min-width: 0;
+            }
+            .radiogroup {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            .form-check {
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+        }
     </style>
 </head>
 
@@ -61,7 +79,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-5 form-section me-md-3 mb-3 mb-md-0">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 form-section">
 
 
                 <h3>Create your account</h2>
