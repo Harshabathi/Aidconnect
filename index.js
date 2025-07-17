@@ -15,6 +15,7 @@ dayjs.extend(relativeTime);
 const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
 dotenv.config();
+const axios = require('axios');
 
 const methodOverride = require("method-override");
 const aidsRoutes = require("./routes/aids.js");
@@ -94,6 +95,23 @@ app.use('/users/:id',partUserRoutes);
 app.get("/",(req,res)=>{
   res.render('./aids/index.ejs');
 })
+
+
+const url = 'https://aidconnect-glcj.onrender.com/';
+const interval = 30000;
+
+function reloadwebsite(){
+  axios
+      .get(url)
+      .then((res)=>{
+         console.log("website reloaded");
+      })
+      .catch((err)=>{
+        console.log(`Error : ${err.message}`);
+      })
+}
+
+setInterval(reloadwebsite,interval);
 
 app.use((err, req, res, next) => {
   let { status = 500, message = 'something went wrong' } = err;
